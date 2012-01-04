@@ -1,0 +1,22 @@
+diff --git a/test/aaa_profiling/test_pool.py b/test/aaa_profiling/test_pool.py
+index da51779..d322a2f 100644
+--- a/test/aaa_profiling/test_pool.py
++++ b/test/aaa_profiling/test_pool.py
+@@ -15,7 +15,7 @@
+                          use_threadlocal=True)
+ 
+ 
+-    @profiling.function_call_count(54, {'2.4': 38})
++    @profiling.function_call_count(49, {'2.4': 38})
+     def test_first_connect(self):
+         conn = pool.connect()
+ 
+@@ -23,7 +23,7 @@
+         conn = pool.connect()
+         conn.close()
+ 
+-        @profiling.function_call_count(31, {'2.4': 21})
++        @profiling.function_call_count(28, {'2.4': 21})
+         def go():
+             conn2 = pool.connect()
+             return conn2

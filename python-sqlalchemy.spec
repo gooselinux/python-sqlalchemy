@@ -5,7 +5,7 @@
 
 Name:           python-sqlalchemy
 Version:        0.5.5
-Release:        2.1%{?dist}
+Release:        2.1%{?dist}.goose.1
 Summary:        Modular and flexible ORM library for python
 
 Group:          Development/Libraries
@@ -19,6 +19,8 @@ BuildRequires:  python-devel
 BuildRequires:  python-setuptools-devel >= 0.6c3
 BuildRequires: python-nose
 
+Patch0:         fix-profiling-counts.patch
+
 %description
 SQLAlchemy is an Object Relational Mappper (ORM) that provides a flexible,
 high-level interface to SQL databases.  Database and domain concepts are
@@ -30,6 +32,7 @@ domain.
 
 %prep
 %setup -q -n %{srcname}-%{version}
+%patch0 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
@@ -57,6 +60,10 @@ nosetests
 %{python_sitelib}/*
 
 %changelog
+* Wed Jan  4 2012 Clint Savage <herlo@gooseproject.org> - 0.5.5-2.1.goose.1
+- Profiling bug appears to have been introduced because of a change when built in upstream beta
+- This patch is adjusts the profiling tests appropriately.
+
 * Mon Nov 30 2009 Dennis Gregorovic <dgregor@redhat.com> - 0.5.5-2.1
 - Rebuilt for RHEL 6
 
